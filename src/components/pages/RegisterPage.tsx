@@ -12,12 +12,34 @@ import {
 
 const RegisterPage = () => {
     const [country, setCountry] = useState("");
+    const [favTeam, setFavTeam] = useState("");
 
     const countries = [
         "Greece", "Spain", "Turkey", "Germany", "Italy", "France", "Serbia", "Russia",
         "Lithuania", "United States", "Canada", "Argentina", "Brazil", "Australia",
         "China", "Philippines", "United Kingdom", "Poland", "Czech Republic"
     ];
+
+    const teams = [
+        "Anadolu Efes Istanbul",
+        "Real Madrid",
+        "Virtus Segafredo Bologna",
+        "FC Barcelona",
+        "Olympiacos Piraeus",
+        "Panathinaikos AKTOR",
+        "AS Monaco",
+        "Fenerbahçe Beko Istanbul",
+        "Maccabi Playtika Tel Aviv",
+        "EA7 Emporio Armani Milan",
+        "Alba Berlin",
+        "Partizan Mozzart Bet Belgrade",
+        "Crvena Zvezda Meridianbet Belgrade",
+        "Baskonia Vitoria-Gasteiz",
+        "ASVEL Villeurbanne",
+        "Valencia Basket",
+        "Zalgiris Kaunas",
+        "Bayern Munich"
+    ]
 
     return (
         <div className="min-h-screen bg-gray-900 relative overflow-x-hidden py-8 md:py-16 pt-24">
@@ -70,6 +92,24 @@ const RegisterPage = () => {
                         <Input type="text" placeholder="Municipality"/>
 
                         <Input type="text" placeholder="Phone"/>
+
+                        <Select value={favTeam} onValueChange={setFavTeam}>
+                            <SelectTrigger className="w-full bg-transparent text-white border border-white/20 focus:ring-2 focus:ring-white/20">
+                                <SelectValue placeholder="Select your Favourite Team" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-gray-900 text-white border border-white/20">
+                                {teams.map((favTeam) => (
+                                    <SelectItem
+                                        key={favTeam}
+                                        value={favTeam}
+                                        className="focus:bg-gray-700"
+                                    >
+                                        {favTeam}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+
 
                         <Input type="password" placeholder="Password" />
 
