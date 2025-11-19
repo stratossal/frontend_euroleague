@@ -9,7 +9,7 @@ export async function getTeams() {
 }
 
 export async function getTeam(id: string) {
-    const response = await fetch(`${API_URL}/teams/${id}`)
+    const response = await fetch(`${API_URL}/teams/${id}/`)
     if (!response.ok) throw new Error("Failed to fetch team.")
     return await response.json()
 }

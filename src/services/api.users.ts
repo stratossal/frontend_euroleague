@@ -4,7 +4,7 @@ import type {User} from "@/schemas/users.ts";
 const API_URL = import.meta.env.VITE_API_URL
 
 export async function getUsers() :Promise<User[]> {
-    const response = await fetch(`${API_URL}/users`, {
+    const response = await fetch(`${API_URL}/users/`, {
         method: "GET",
         headers: {"Content-Type": "application/x-www-form-urlencoded"}
     })
@@ -13,7 +13,7 @@ export async function getUsers() :Promise<User[]> {
 }
 
 export async function getUser(id: string):Promise<User>   {
-    const response = await fetch(`${API_URL}/users/${id}`, {
+    const response = await fetch(`${API_URL}/users/${id}/`, {
         method: "GET",
         headers: {"Content-Type": "application/x-www-form-urlencoded"}
     })
@@ -22,7 +22,7 @@ export async function getUser(id: string):Promise<User>   {
 }
 
 export async function createUser(data: Omit<User,"id">) {
-    const response = await fetch(`${API_URL}/users`, {
+    const response = await fetch(`${API_URL}/users/`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
@@ -32,7 +32,7 @@ export async function createUser(data: Omit<User,"id">) {
 }
 
 export async function updateUser(id: string, data: Partial<User>):Promise<User>{
-    const response = await fetch(`${API_URL}/users/${id}`, {
+    const response = await fetch(`${API_URL}/users/${id}/`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
@@ -42,7 +42,7 @@ export async function updateUser(id: string, data: Partial<User>):Promise<User>{
 }
 
 export async function deleteUser(id: string) {
-    const response = await fetch(`${API_URL}/users/${id}`, {
+    const response = await fetch(`${API_URL}/users/${id}/`, {
         method: "DELETE"
     })
     if (!response.ok) throw new Error("Failed to delete user.")
