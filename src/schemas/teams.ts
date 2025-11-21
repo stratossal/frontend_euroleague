@@ -1,4 +1,5 @@
 import { z } from "zod";
+import {playerSchema} from "../schemas/players.ts";
 
 export const teamSchema = z.object({
     _id: z.string(),
@@ -28,7 +29,8 @@ export const teamSchema = z.object({
         freeThrowPercentage: z.number().min(0).max(100),
         defensiveRating: z.number(),
         offensiveRating: z.number()
-    })
+    }),
+    players: z.array(playerSchema).optional()
 });
 
 export type Team = z.infer<typeof teamSchema>;

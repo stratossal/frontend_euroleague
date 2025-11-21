@@ -13,6 +13,7 @@ import type {Team} from "@/schemas/teams.ts";
 import {OrbitProgress} from "react-loading-indicators";
 import type { FeatureCollection } from "geojson";
 import EuropeMap from "@/components/map/EuropeMap.tsx";
+import {useNavigate} from "react-router";
 
 
 const cityCoordinates: Record<string, [number, number]> = {
@@ -40,6 +41,7 @@ const TeamsListPage = () =>{
     const [loading, setLoading] = useState<boolean>(true)
     const [europeGeoJson, setEuropeGeoJson] = useState<FeatureCollection | null>(null);
     const [mapLoading, setMapLoading] = useState<boolean>(true)
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getTeams()
@@ -86,7 +88,9 @@ const TeamsListPage = () =>{
                     </TableHeader>
                     <TableBody>
                         {teams.map((team) => (
-                            <TableRow key={team.teamId}>
+                            <TableRow key={team.teamId}
+                                      className="cursor-pointer hover:bg-gray-50 transition-colors duration-200"
+                                      onClick={()=> navigate(`/teams/${team._id}`)}>
                                 <TableCell className="font-medium">
                                     <div className="flex items-center gap-2">
                                         <img

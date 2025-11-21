@@ -5,7 +5,6 @@ import {Input} from "@/components/ui/input.tsx";
 const LoginPage = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900 relative overflow-hidden pt-24">
-            {/* Background Image */}
             <img
                 src="/png/field.jpg"
                 alt="Basketball Background"
@@ -13,7 +12,6 @@ const LoginPage = () => {
                 style={{ zIndex: 0 }}
             />
 
-            {/* Login Card */}
             <div
                 className="relative z-10 w-full max-w-md mx-4 rounded-2xl bg-black bg-opacity-40 backdrop-blur-md p-8 shadow-2xl text-white"
                 role="form"
@@ -38,7 +36,6 @@ const LoginPage = () => {
                 </div>
             </div>
 
-            {/* Vignette overlay */}
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40"
