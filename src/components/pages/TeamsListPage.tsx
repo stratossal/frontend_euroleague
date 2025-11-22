@@ -16,6 +16,7 @@ import EuropeMap from "@/components/map/EuropeMap.tsx";
 import {useNavigate} from "react-router";
 
 
+
 const cityCoordinates: Record<string, [number, number]> = {
     "Madrid": [-3.7038, 40.4168],
     "Barcelona": [2.1734, 41.3851],
@@ -76,7 +77,7 @@ const TeamsListPage = () =>{
                 <h1 className="text-3xl text-center font-bold text-gray-600 my-4 py-2 mt-10">
                     Teams
                 </h1>
-                <Table className="border-2 ">
+                <Table className="border-2">
                     <TableCaption>A list of Euroleague Teams.</TableCaption>
                     <TableHeader className="bg-gray-100">
                         <TableRow>
