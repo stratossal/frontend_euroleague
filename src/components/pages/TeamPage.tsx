@@ -36,17 +36,21 @@ const TeamPage = () => {
             </div>
         )
     }
+
+    if (!team) return null
+
+    const {teamStats, standings, name} = team
     const teamStatsData = [
-        { value: team.teamStats.pointsPerGame, name: 'Points' },
-        { value: team.teamStats.reboundsPerGame, name: 'Rebounds' },
-        { value: team.teamStats.assistsPerGame, name: 'Assists' },
-        { value: team.teamStats.fieldGoalPercentage, name: 'FG%' },
-        { value: team.teamStats.threePointPercentage, name: '3P%' },
+        { value: teamStats.pointsPerGame, name: 'Points' },
+        { value: teamStats.reboundsPerGame, name: 'Rebounds' },
+        { value: teamStats.assistsPerGame, name: 'Assists' },
+        { value: teamStats.fieldGoalPercentage, name: 'FG%' },
+        { value: teamStats.threePointPercentage, name: '3P%' },
     ]
 
     const standingsData = [
-        { value: team.standings.wins, name: 'Wins' },
-        { value: team.standings.losses, name: 'Losses' },
+        { value: standings.wins, name: 'Wins' },
+        { value: standings.losses, name: 'Losses' },
     ]
 
     return (<>
@@ -69,7 +73,7 @@ const TeamPage = () => {
                         />
                         <div>
                             <h1 className="text-3xl font-bold uppercase text-gray-800">
-                                {team.name}
+                                {name}
                             </h1>
                             <p className="text-gray-600 text-sm">{team.city}, {team.country}</p>
                         </div>
@@ -80,19 +84,19 @@ const TeamPage = () => {
             <div className="max-w-6xl mx-auto px-4 py-8">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white p-4 rounded-lg shadow text-center">
-                        <div className="text-lg font-bold text-blue-600">{team.standings.wins}-{team.standings.losses}</div>
+                        <div className="text-lg font-bold text-blue-600">{standings.wins}-{standings.losses}</div>
                         <div className="text-gray-600 text-sm">Record</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow text-center">
-                        <div className="text-lg font-bold text-green-600">#{team.standings.position}</div>
+                        <div className="text-lg font-bold text-green-600">#{standings.position}</div>
                         <div className="text-gray-600 text-sm">Position</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow text-center">
-                        <div className="text-lg font-bold text-purple-600">+{team.standings.pointDifference}</div>
+                        <div className="text-lg font-bold text-purple-600">+{standings.pointDifference}</div>
                         <div className="text-gray-600 text-sm">Point Diff</div>
                     </div>
                     <div className="bg-white p-4 rounded-lg shadow text-center">
-                        <div className="text-lg font-bold text-orange-600">{team.teamStats.pointsPerGame}</div>
+                        <div className="text-lg font-bold text-orange-600">{teamStats.pointsPerGame}</div>
                         <div className="text-gray-600 text-sm">PPG</div>
                     </div>
                 </div>

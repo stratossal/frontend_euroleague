@@ -76,7 +76,7 @@ const TeamsListPage = () =>{
                 <h1 className="text-3xl text-center font-bold text-gray-600 my-4 py-2 mt-10">
                     Teams
                 </h1>
-                <Table>
+                <Table className="border-2 ">
                     <TableCaption>A list of Euroleague Teams.</TableCaption>
                     <TableHeader className="bg-gray-100">
                         <TableRow>
@@ -110,7 +110,7 @@ const TeamsListPage = () =>{
                 </Table>
             </div>
 
-            <div className="mt-12">
+            <div className="mt-12 ">
                 <h2 className="text-2xl text-center font-bold text-gray-600 my-6">
                     Team Performance Map
                 </h2>
@@ -119,6 +119,7 @@ const TeamsListPage = () =>{
                         <OrbitProgress color="#4F46E5" size="medium" />
                     </div>
                 ) : (
+                    <div className="flex items-center justify-center">
                     <EuropeMap
                         width={1000}
                         height={700}
@@ -126,6 +127,7 @@ const TeamsListPage = () =>{
                         teams={teams}
                         cityCoordinates={cityCoordinates}
                     />
+                    </div>
                 )}
             </div>
 

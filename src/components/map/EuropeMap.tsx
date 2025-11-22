@@ -104,7 +104,7 @@ export const EuropeMap = ({ width, height, data, teams, cityCoordinates }: MapPr
     }).filter(Boolean);
 
     return (
-        <div className="relative">
+        <div className="relative flex justify-center border-2 border-amber-500 m-4">
             <svg width={width} height={height}>
                 {allSvgPaths}
                 {teamPoints}
