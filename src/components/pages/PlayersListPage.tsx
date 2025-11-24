@@ -5,13 +5,14 @@ import {OrbitProgress} from "react-loading-indicators";
 import {Pagination} from "@/components/ui/Pagination.tsx";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import {useNavigate} from "react-router";
 
 const PlayersListPage = () =>{
     const [players, setPlayers] = useState<Player[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
-
     const displayedPlayers = selectedPlayer ? [selectedPlayer] : players;
+    const navigate = useNavigate();
 
     useEffect(() => {
         getPlayers()
@@ -49,7 +50,10 @@ const PlayersListPage = () =>{
                     )}
                 />
             </div>
-            <Pagination players={displayedPlayers} itemsPerPage={20}/>
+            <Pagination players={displayedPlayers}
+                        itemsPerPage={20}
+                        onRowClick={(player) => navigate(`/players/${player._id}`)}
+            />
         </div>
     );
 }

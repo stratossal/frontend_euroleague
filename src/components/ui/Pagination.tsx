@@ -14,9 +14,11 @@ import {
 interface PaginationProps {
     players: Player[];
     itemsPerPage?: number;
+    onRowClick?: (player: Player) => void;
 }
 
-export function Pagination({ players, itemsPerPage = 5 }: PaginationProps) {
+
+export function Pagination({ players, itemsPerPage = 5 , onRowClick}: PaginationProps) {
     const [itemOffset, setItemOffset] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -46,7 +48,10 @@ export function Pagination({ players, itemsPerPage = 5 }: PaginationProps) {
                 </TableHeader>
                 <TableBody>
                     {currentItems.map((player) => (
-                        <TableRow key={player.playerId} className="hover:bg-gray-50 cursor-pointer">
+                        <TableRow key={player.playerId}
+                                  className="hover:bg-gray-50 cursor-pointer"
+                                  onClick={() => onRowClick && onRowClick(player)}
+                        >
                             <TableCell className="font-medium">
                                 <div className="flex items-center gap-3">
                                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 font-bold text-sm">

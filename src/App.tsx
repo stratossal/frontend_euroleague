@@ -6,6 +6,7 @@ import LoginPage from "@/components/pages/LoginPage.tsx";
 import TeamsListPage from "@/components/pages/TeamsListPage.tsx";
 import TeamPage from "@/components/pages/TeamPage.tsx";
 import PlayersListPage from "@/components/pages/PlayersListPage.tsx";
+import PlayerPage from "@/components/pages/PlayerPage.tsx";
 
 
 function App(){
@@ -24,6 +25,7 @@ function App(){
                       </Route>
                       <Route path="players">
                           <Route index element={<PlayersListPage/>}/>
+                          <Route path=":playerId" element={<PlayerPage/>}/>
                       </Route>
                   </Route>
               </Routes>
