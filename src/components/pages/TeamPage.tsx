@@ -3,7 +3,7 @@ import { getTeam } from "@/services/api.teams.ts";
 import type { Team } from "@/schemas/teams.ts";
 import { useEffect, useState } from "react";
 import { OrbitProgress } from "react-loading-indicators";
-import { useParams } from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {
     Table,
     TableBody,
@@ -18,6 +18,7 @@ const TeamPage = () => {
     const { teamId } = useParams<{ teamId: string }>();
     const [team, setTeam] = useState<Team | undefined>();
     const [loading, setLoading] = useState<boolean>(true)
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!teamId) return
@@ -140,7 +141,10 @@ const TeamPage = () => {
                         </TableHeader>
                         <TableBody>
                             {team.players?.map((player) => (
-                                <TableRow key={player._id} className="hover:bg-gray-50 cursor-pointer">
+                                <TableRow key={player._id}
+                                          className="hover:bg-gray-50 cursor-pointer"
+                                          onClick={()=> navigate(`/players/${player._id}`)}
+                                >
                                     <TableCell className="font-medium">
                                         <div className="flex items-center gap-3">
                                             <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 font-bold text-sm">

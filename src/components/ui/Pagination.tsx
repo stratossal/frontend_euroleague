@@ -15,7 +15,6 @@ import {useNavigate} from "react-router";
 interface PaginationProps {
     players: Player[];
     itemsPerPage?: number;
-    onRowClick?: (player: Player) => void;
 }
 
 

@@ -1,11 +1,6 @@
 import {Link} from "react-router";
 
 const HomePage = () => {
-    // const links=[
-    //     {path:"/", label:"Home Page"},
-    //     {path:"/teams", label:"Teams"},
-    //     {path:"/teams/12", label:"Team (ID:12)"},
-    // ]
 
     return (
         <div className="min-h-screen">
