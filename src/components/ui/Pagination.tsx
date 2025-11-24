@@ -10,6 +10,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import {useNavigate} from "react-router";
 
 interface PaginationProps {
     players: Player[];
@@ -18,9 +19,10 @@ interface PaginationProps {
 }
 
 
-export function Pagination({ players, itemsPerPage = 5 , onRowClick}: PaginationProps) {
+export function Pagination({ players, itemsPerPage = 5 }: PaginationProps) {
     const [itemOffset, setItemOffset] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
+    const navigate = useNavigate();
 
     const endOffset = itemOffset + itemsPerPage;
     const currentItems = players.slice(itemOffset, endOffset);
@@ -50,7 +52,7 @@ export function Pagination({ players, itemsPerPage = 5 , onRowClick}: Pagination
                     {currentItems.map((player) => (
                         <TableRow key={player.playerId}
                                   className="hover:bg-gray-50 cursor-pointer"
-                                  onClick={() => onRowClick && onRowClick(player)}
+                                  onClick={() => navigate(`/players/${player._id}`)}
                         >
                             <TableCell className="font-medium">
                                 <div className="flex items-center gap-3">
