@@ -1,6 +1,51 @@
 import {Link} from "react-router";
+import {useEffect, useState} from "react";
+import {getPlayers} from "@/services/api.players.ts";
 
 const HomePage = () => {
+    const [maxPPlayer, setMaxPPlayer] = useState(null);
+    const [maxAPlayer, setMaxAPlayer] = useState(null);
+    const [maxRPlayer, setMaxRPlayer] = useState(null);
+    const [maxEPlayer, setMaxEPlayer] = useState(null);
+
+    useEffect(() => {
+        getPlayers().then((players)=> {
+            let maxPointPlayer = null;
+            let maxAssistPlayer = null;
+            let maxReboundPlayer = null;
+            let maxEfPlayer = null;
+
+            let maxPoints = 0;
+            let maxAssists = 0;
+            let maxRebounds = 0;
+            let maxEf = 0;
+
+            players.forEach((player) => {
+                if (player.stats.pointsPerGame > maxPoints) {
+                    maxPoints = player.stats.pointsPerGame;
+                    maxPointPlayer = player;
+                }
+                if (player.stats.assistsPerGame > maxAssists) {
+                    maxAssists = player.stats.assistsPerGame;
+                    maxAssistPlayer = player;
+                }
+                if (player.stats.reboundsPerGame > maxRebounds) {
+                    maxRebounds = player.stats.reboundsPerGame;
+                    maxReboundPlayer = player;
+                }
+                if (player.stats.efficiency > maxEf) {
+                    maxEf = player.stats.efficiency;
+                    maxEfPlayer = player;
+                }
+            });
+
+            setMaxPPlayer(maxPointPlayer);
+            setMaxAPlayer(maxAssistPlayer);
+            setMaxRPlayer(maxReboundPlayer);
+            setMaxEPlayer(maxEfPlayer);
+            });
+        },[]);
+
 
     return (
         <div className="min-h-screen">
@@ -44,37 +89,50 @@ const HomePage = () => {
 
                     <div className="grid md:grid-cols-3 gap-8">
 
-                        <div className="text-center p-6">
+                        <Link
+                            to="/stats"
+                            className="text-center p-6 block rounded-lg hover:shadow-xl transition"
+                        >
                             <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <span className="text-white text-2xl">📊</span>
                             </div>
                             <h3 className="text-2xl font-bold mb-4 text-gray-900">Advanced Analytics</h3>
                             <p className="text-gray-600 text-lg">
-                                Access deep statistical insights with real-time data updates and comprehensive metrics.
+                                Access deep statistical insights with real-time data.
                             </p>
-                        </div>
+                        </Link>
 
 
-                        <div className="text-center p-6">
+                        <Link
+                            to="/players"
+                            className="text-center p-6 block rounded-lg hover:shadow-xl transition"
+                        >
                             <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <span className="text-white text-2xl">👥</span>
                             </div>
+
                             <h3 className="text-2xl font-bold mb-4 text-gray-900">Player Profiles</h3>
+
                             <p className="text-gray-600 text-lg">
                                 Detailed player performance analysis, career stats, and comparison tools.
                             </p>
-                        </div>
+                        </Link>
 
 
-                        <div className="text-center p-6">
+                        <Link
+                            to="/teams"
+                            className="text-center p-6 block rounded-lg hover:shadow-xl transition"
+                        >
                             <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <span className="text-white text-2xl">🏆</span>
                             </div>
+
                             <h3 className="text-2xl font-bold mb-4 text-gray-900">Team Insights</h3>
+
                             <p className="text-gray-600 text-lg">
                                 Team performance tracking, strategy analysis, and season-long statistics.
                             </p>
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -89,28 +147,28 @@ const HomePage = () => {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">-</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxPPlayer?.name}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Points Leader</h3>
                             <p className="text-gray-500">Top scorer</p>
                         </div>
 
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">-</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxRPlayer?.name}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Rebounds Leader</h3>
                             <p className="text-gray-500">Most rebounds</p>
                         </div>
 
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">-</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxAPlayer?.name}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Assists Leader</h3>
                             <p className="text-gray-500">Playmaking master</p>
                         </div>
 
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">-</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxEPlayer?.name}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Efficiency</h3>
                             <p className="text-gray-500">Performance rating</p>
                         </div>
@@ -131,7 +189,7 @@ const HomePage = () => {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <Link
-                            to="/register"
+                            to="/login"
                             className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105"
                         >
                             Start Free Trial
