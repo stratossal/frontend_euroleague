@@ -7,6 +7,7 @@ import TeamsListPage from "@/components/pages/TeamsListPage.tsx";
 import TeamPage from "@/components/pages/TeamPage.tsx";
 import PlayersListPage from "@/components/pages/PlayersListPage.tsx";
 import PlayerPage from "@/components/pages/PlayerPage.tsx";
+import StatsPage from "@/components/pages/StatsPage.tsx";
 
 
 function App(){
@@ -27,6 +28,7 @@ function App(){
                           <Route index element={<PlayersListPage/>}/>
                           <Route path=":playerId" element={<PlayerPage/>}/>
                       </Route>
+                      <Route path="stats" element={<StatsPage/>}/>
                   </Route>
               </Routes>
           </BrowserRouter>
