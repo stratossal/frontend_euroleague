@@ -46,7 +46,11 @@ const TeamsListPage = () =>{
 
     useEffect(()=>{
         getTeams()
-            .then((data)=>setTeams(data))
+            .then((data)=>{
+                const sorted = [...data].sort((a,b)=>
+                a.standings.position - b.standings.position)
+                setTeams(sorted)
+            })
             .finally(()=>setLoading(false))
 
     },[])
