@@ -2,7 +2,7 @@ import {Link, useNavigate} from "react-router";
 import {Button} from "@/components/ui/button.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {useForm} from "react-hook-form";
-import {loginSchema, type LoginUser} from "@/schemas/login.ts";
+import {loginSchema, type LoginFields} from "@/schemas/login.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {login} from "@/services/api.login.ts";
 import {toast} from "sonner";
@@ -15,11 +15,11 @@ const LoginPage = () => {
         register,
         handleSubmit,
         formState: {errors, isSubmitting},
-    } = useForm<LoginUser>({
+    } = useForm<LoginFields>({
         resolver: zodResolver(loginSchema)
     });
 
-    const onSubmit = async (data: LoginUser) => {
+    const onSubmit = async (data: LoginFields) => {
         try {
             await login(data.email, data.password);
             toast.success("Login successfully");

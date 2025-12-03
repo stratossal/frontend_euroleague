@@ -26,6 +26,7 @@
     "echarts-for-react": "^3.0.5",
     "gsap": "^3.13.0",
     "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
     "lucide-react": "^0.548.0",
     "motion": "^12.23.24",
     "react": "^19.1.1",
