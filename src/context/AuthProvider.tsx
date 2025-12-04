@@ -17,12 +17,20 @@ export const AuthProvider = ({children}: {children: React.ReactNode})=>{
     useEffect(() => {
         const token = getCookie("access_token");
         setAccessToken(token ?? null);
-        if (token){
-            const decoded = jwtDecode<JwtPayload>(token);
-            console.log(decoded.email);
+
+        if (token) {
+            try {
+                const decoded = jwtDecode<JwtPayload>(token);
+                console.log("Decoded JWT:", decoded);
+            } catch (e) {
+                console.warn("Invalid JWT token:", e);
+                deleteCookie("access_token");
+                setAccessToken(null);
+            }
         }
         setLoading(false);
     }, []);
+
 
     const loginUser = async (fields: LoginFields) => {
         const res = await login(fields)
