@@ -26,11 +26,11 @@ export const AuthProvider = ({children}: {children: React.ReactNode})=>{
 
     const loginUser = async (fields: LoginFields) => {
         const res = await login(fields)
-        setCookie("access_token", res.access_token,{
+        setCookie("access_token", res.access_token, {
             expires: 1,
             sameSite: "Lax",
-            secure: true,
-            path:"/"
+            secure: false,
+            path: "/"
         });
         setAccessToken(res.access_token);
     }

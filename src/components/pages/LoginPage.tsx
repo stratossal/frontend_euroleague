@@ -4,13 +4,12 @@ import {Input} from "@/components/ui/input.tsx";
 import {useForm} from "react-hook-form";
 import {loginSchema, type LoginFields} from "@/schemas/login.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {login} from "@/services/api.login.ts";
 import {toast} from "sonner";
+import {useAuth} from "@/hooks/useAuth.ts";
 
 const LoginPage = () => {
-
     const navigate = useNavigate();
-
+    const {loginUser} = useAuth();
     const {
         register,
         handleSubmit,
@@ -18,10 +17,9 @@ const LoginPage = () => {
     } = useForm<LoginFields>({
         resolver: zodResolver(loginSchema)
     });
-
     const onSubmit = async (data: LoginFields) => {
         try {
-            await login(data.email, data.password);
+            await loginUser(data);
             toast.success("Login successfully");
             navigate("/teams")
         }catch (error) {
