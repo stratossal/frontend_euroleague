@@ -22,6 +22,7 @@ const LoginPage = () => {
             await loginUser(data);
             toast.success("Login successfully");
             navigate("/teams")
+            console.log(data)
         }catch (error) {
             toast.error(
                 error instanceof Error ? error.message : "Login Failed"

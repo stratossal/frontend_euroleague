@@ -3,7 +3,7 @@ import type {LoginFields} from "@/schemas/login.ts";
 const API_URL = import.meta.env.VITE_API_URL
 
 export type LoginResponse = {
-    access_token: string
+    token: string
     token_type: string
 }
 
