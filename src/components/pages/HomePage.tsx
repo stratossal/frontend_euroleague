@@ -1,12 +1,15 @@
 import {Link} from "react-router";
 import {useEffect, useState} from "react";
 import {getPlayers} from "@/services/api.players.ts";
+import {useAuth} from "@/hooks/useAuth.ts";
 
 const HomePage = () => {
     const [maxPPlayer, setMaxPPlayer] = useState(null);
     const [maxAPlayer, setMaxAPlayer] = useState(null);
     const [maxRPlayer, setMaxRPlayer] = useState(null);
     const [maxEPlayer, setMaxEPlayer] = useState(null);
+
+    const {isAuthenticated} = useAuth()
 
     useEffect(() => {
         getPlayers().then((players)=> {
@@ -65,12 +68,15 @@ const HomePage = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <Link
-                            to="/login"
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105"
-                        >
-                            Get Started
-                        </Link>
+                        {!isAuthenticated && (
+                            <Link
+                                to="/login"
+                                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105"
+                            >
+                                Get Started
+                            </Link>
+                        )}
+
                         <Link
                             to="/stats"
                             className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-4 rounded-lg text-lg font-semibold transition"
@@ -188,12 +194,15 @@ const HomePage = () => {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <Link
-                            to="/login"
-                            className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105"
-                        >
-                            Start Free Trial
-                        </Link>
+                        {!isAuthenticated && (
+                            <Link
+                                to="/login"
+                                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition transform hover:scale-105"
+                            >
+                                Start Free Trial
+                            </Link>
+                        )}
+
                         <Link
                             to="/players"
                             className="border border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold transition"

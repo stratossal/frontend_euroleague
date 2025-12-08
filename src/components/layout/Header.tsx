@@ -1,7 +1,8 @@
 // import {AuthButton} from "@/components/AuthButton.tsx";
-import {Button} from "@/components/ui/button.tsx";
+// import {Button} from "@/components/ui/button.tsx";
 // import HomePage from "@/components/pages/HomePage.tsx";
 import {Link} from "react-router";
+import {AuthButton} from "@/components/AuthButton.tsx";
 
 const Header = () => {
     return (
@@ -24,12 +25,7 @@ const Header = () => {
 
 
                 <div className="flex items-center gap-4">
-                    <Link to="/login" className="text-gray-700 hover:text-orange-500 transition py-2">Login</Link>
-                    <Link to="/register">
-                        <Button className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded transition">
-                            Register
-                        </Button>
-                    </Link>
+                    <AuthButton/>
                 </div>
             </div>
         </header>
