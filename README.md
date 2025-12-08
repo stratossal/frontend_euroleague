@@ -1,76 +1,46 @@
+# 🏀 Frontend Euroleague Project
 
-# React + TypeScript + Vite
+A responsive **React + TypeScript** application for Euroleague basketball fans.  
+Built with **Vite**, **Tailwind CSS**, and **React Hook Form**, it allows users to register, log in, and view/update user data with a modern UI.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 📦 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User registration with **form validation** (powered by **Zod** + **React Hook Form**)
+- User login and navigation
+- Select dropdowns for **country** and **favorite team**
+- Responsive and visually appealing UI
+- Integration with a backend API (CRUD operations for users)
+- Error handling and toast notifications using **Sonner**
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Technologies Used
 
-## Expanding the ESLint configuration
+- **Frontend:** React, TypeScript, Vite, Tailwind CSS
+- **Forms & Validation:** React Hook Form, Zod
+- **UI Components:** Custom Input, Button, Select components
+- **Notifications:** Sonner
+- **Backend API:** REST API for user management
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🖥 Demo / Access
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+You can try the app without registering your own account. Use the demo credentials:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**Email:** ` stratos.salpas@example.com `  
+**Password:** `mypassword123`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This account allows you to explore all features.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ⚡ Getting Started
 
+### 1. Clone the repository
 
-
+```bash
+git clone https://github.com/stratossal/frontend_euroleague.git
+cd frontend_euroleague
