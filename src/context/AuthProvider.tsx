@@ -10,12 +10,19 @@ type JwtPayload = {
     email: string;
     firstname: string;
     lastname: string;
+    country: string;
+    favTeam: string;
 }
 
 export const AuthProvider = ({children}: {children: React.ReactNode})=>{
     const [accessToken, setAccessToken] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [user, setUser] = useState<{ firstname: string; lastname: string } | null>(null);
+    const [user, setUser] = useState<{
+        firstname: string;
+        lastname: string;
+        email: string;
+        country: string;
+    } | null>(null);
 
 
     useEffect(() => {
@@ -28,7 +35,9 @@ export const AuthProvider = ({children}: {children: React.ReactNode})=>{
                 console.log("Decoded JWT:", decoded);
                 setUser({
                     firstname: decoded.firstname,
-                    lastname: decoded.lastname
+                    lastname: decoded.lastname,
+                    email: decoded.email,
+                    country: decoded.country,
                 });
             } catch (e) {
                 console.warn("Invalid JWT token:", e);
@@ -52,12 +61,13 @@ export const AuthProvider = ({children}: {children: React.ReactNode})=>{
         });
         setAccessToken(token);
 
-        // decode token και set user
         try {
             const decoded = jwtDecode<JwtPayload>(token);
             setUser({
                 firstname: decoded.firstname,
-                lastname: decoded.lastname
+                lastname: decoded.lastname,
+                email: decoded.email,
+                country: decoded.country
             });
         } catch (e) {
             console.warn("Invalid JWT token:", e);

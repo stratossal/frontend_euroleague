@@ -11,6 +11,8 @@ import StatsPage from "@/components/pages/StatsPage.tsx";
 import ProtectedRoute from "@/components/ProtectedRoute.tsx";
 import {AuthProvider} from "@/context/AuthProvider.tsx";
 import {Toaster} from "sonner";
+import ProfilePage from "@/components/pages/ProfilePage.tsx";
+import EditProfilePage from "@/components/pages/EditProfilePage.tsx";
 
 
 function App(){
@@ -34,6 +36,8 @@ function App(){
                           <Route path=":playerId" element={<PlayerPage/>}/>
                       </Route>
                       <Route path="stats" element={<StatsPage/>}/>
+                      <Route path="profile" element={<ProfilePage />} />
+                      <Route path="profile/edit" element={<EditProfilePage />} />
                       </Route>
                   </Route>
               </Routes>
