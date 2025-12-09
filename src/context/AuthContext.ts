@@ -7,6 +7,7 @@ type AuthContextProps = {
     loginUser: (fields: LoginFields) => Promise<void>
     logoutUser: () => void
     loading: boolean
+    user: { firstname: string; lastname: string } | null;
     }
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined)
