@@ -153,28 +153,28 @@ const HomePage = () => {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxPPlayer?.name}</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxPPlayer ? maxPPlayer.name : "Loading..."}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Points Leader</h3>
                             <p className="text-gray-500">Top scorer</p>
                         </div>
 
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxRPlayer?.name}</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxRPlayer ? maxRPlayer.name : "Loading..."}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Rebounds Leader</h3>
                             <p className="text-gray-500">Most rebounds</p>
                         </div>
 
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxAPlayer?.name}</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxAPlayer ? maxAPlayer.name : "Loading..."}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Assists Leader</h3>
                             <p className="text-gray-500">Playmaking master</p>
                         </div>
 
 
                         <div className="bg-white p-6 rounded-lg shadow-md text-center">
-                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxEPlayer?.name}</div>
+                            <div className="text-3xl font-bold text-orange-500 mb-2">{maxEPlayer ? maxEPlayer.name : "Loading..."}</div>
                             <h3 className="text-lg font-semibold text-gray-900">Efficiency</h3>
                             <p className="text-gray-500">Performance rating</p>
                         </div>

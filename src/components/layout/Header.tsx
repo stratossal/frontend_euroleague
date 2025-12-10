@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import AvatarDropdown from "@/components/ui/AvatarDropdown.tsx";
 
 const Header = () => {
-    const { user, isAuthenticated } = useAuth();
+    const {isAuthenticated } = useAuth();
 
     return (
         <header className="bg-gray-100 w-full fixed top-0 border-b border-gray-300 z-999">
@@ -21,7 +21,7 @@ const Header = () => {
                 </nav>
 
                 <div className="flex items-center gap-4">
-                    {isAuthenticated && user ? (
+                    {isAuthenticated ? (
                         <AvatarDropdown />
                     ) : (
                         <div className="flex items-center gap-4">

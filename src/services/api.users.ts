@@ -12,10 +12,13 @@ export async function getUsers() :Promise<User[]> {
     return await response.json()
 }
 
-export async function getUser(id: string):Promise<User>   {
+export async function getUser(id: string, token: string): Promise<User> {
     const response = await fetch(`${API_URL}/users/${id}/`, {
         method: "GET",
-        headers: {"Content-Type": "application/x-www-form-urlencoded"}
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
     })
     if (!response.ok) throw new Error("Failed to fetch user.")
     return await response.json()

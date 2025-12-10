@@ -36,8 +36,8 @@ function App(){
                           <Route path=":playerId" element={<PlayerPage/>}/>
                       </Route>
                       <Route path="stats" element={<StatsPage/>}/>
-                      <Route path="profile" element={<ProfilePage />} />
-                      <Route path="profile/edit" element={<EditProfilePage />} />
+                      <Route path="profile" element={<ProfilePage/>} />
+                      <Route path="profile/edit" element={<EditProfilePage/>} />
                       </Route>
                   </Route>
               </Routes>

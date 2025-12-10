@@ -3,9 +3,25 @@ import type {LoginFields} from "@/schemas/login.ts";
 const API_URL = import.meta.env.VITE_API_URL
 
 export type LoginResponse = {
-    token: string
-    token_type: string
+    token: string,
+    user: {
+        _id: string,
+        firstname: string,
+        lastname: string,
+        email: string,
+        country: string,
+        phone?: string,
+        favTeam?: string,
+        address?: {
+            area: string,
+            street: string,
+            number: string,
+            po: string,
+            municipality: string
+        }
+    }
 }
+
 
 export async function login({email,password}:LoginFields):Promise<LoginResponse> {
 
