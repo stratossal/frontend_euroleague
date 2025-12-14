@@ -73,7 +73,8 @@
                         loginUser,
                         logoutUser,
                         loading,
-                        user
+                        user,
+                        setUser
                     }}>
                     { loading ? null : children }
                 </AuthContext.Provider>

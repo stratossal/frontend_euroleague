@@ -41,7 +41,7 @@ export default function AvatarDropdown() {
                             variant="ghost"
                             className="justify-start w-full text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md"
                         >
-                            Settings
+                            <Link to="/profile/edit">Edit Profile</Link>
                         </Button>
                         <Button
                             variant="destructive"

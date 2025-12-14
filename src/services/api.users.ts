@@ -34,10 +34,13 @@ export async function createUser(data: Omit<User,"id">) {
     return await response.json()
 }
 
-export async function updateUser(id: string, data: Partial<User>):Promise<User>{
+export async function updateUser(id: string, data: Partial<User>, token:string):Promise<User>{
     const response = await fetch(`${API_URL}/users/${id}/`, {
         method: "PUT",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
         body: JSON.stringify(data)
     })
     if (!response.ok) throw new Error("Failed to update user.")

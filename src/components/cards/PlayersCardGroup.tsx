@@ -11,7 +11,6 @@
      export const PlayersCardGroup = ({data,playerStats}:PlayerCardProps)=>{
         return (
             <>
-                (
                 <div className="space-y-12">
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-gray-900 mb-2">Advanced Player Analytics</h2>
@@ -42,7 +41,6 @@
                         ))}
                     </div>
                 </div>
-                )
             </>
         )
     }

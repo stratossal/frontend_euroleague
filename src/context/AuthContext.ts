@@ -9,6 +9,7 @@ type AuthContextProps = {
     logoutUser: () => void
     loading: boolean,
     user: User,
+    setUser: (user: User) => void;
     }
 
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined)
