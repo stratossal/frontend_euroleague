@@ -1,5 +1,5 @@
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import { TableHead } from "@/components/ui/table"
+import { TableHead } from "@/components/ui/table";
 
 interface SortableHeaderProps {
     label: string;
@@ -16,6 +16,9 @@ export const Sorting = ({
                             onSort,
                             align = "left",
                         }: SortableHeaderProps) => {
+    const isActive = sortConfig?.key === sortKey;
+    const direction = isActive ? sortConfig!.direction : null;
+
     return (
         <TableHead
             className={`cursor-pointer select-none px-4 ${align === "right" ? "text-right" : "text-left"}`}
@@ -26,10 +29,10 @@ export const Sorting = ({
                 <SwapVertIcon
                     fontSize="small"
                     className={`${
-                        sortConfig?.key === sortKey
+                        isActive
                             ? "text-black"
                             : "text-gray-400"
-                    }`}
+                    } ${isActive && direction === "desc" ? "rotate-180" : ""}`}
                 />
             </div>
         </TableHead>
