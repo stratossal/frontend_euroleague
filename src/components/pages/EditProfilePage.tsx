@@ -8,7 +8,6 @@ import { updateUser } from "@/services/api.users.ts";
 import { toast } from "sonner";
 import {useNavigate} from "react-router";
 
-// Κάνουμε όλα τα πεδία προαιρετικά για update
 export const editProfileSchema = userSchema
     .partial()
     .refine(
