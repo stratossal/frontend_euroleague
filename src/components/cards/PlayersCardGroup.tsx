@@ -2,13 +2,16 @@
     import type {Player} from "@/schemas/players.ts";
 
     type PlayerCardProps = {
-        data:{
-            key:string,
-            label:string,
-        }
-        playerStats:Player
+        data: {
+            key: keyof Stats,
+            label: string,
+        }[]
+        playerStats: Player[]
     }
-     export const PlayersCardGroup = ({data,playerStats}:PlayerCardProps)=>{
+    type Stats = Player["stats"];
+
+
+    export const PlayersCardGroup = ({data,playerStats}:PlayerCardProps)=>{
         return (
             <>
                 <div className="space-y-12">

@@ -7,6 +7,7 @@ import {Tab} from "@/components/tablist/Tab.tsx";
 import {TeamsCardGroup} from "@/components/cards/TeamsCardGroup.tsx";
 import {PlayersCardGroup} from "@/components/cards/PlayersCardGroup.tsx";
 
+
 const StatsPage = () => {
     const [activeCategory, setActiveCategory] = useState('players');
     const [playerStats, setPlayerStats] = useState<Player[]>([]);
@@ -35,7 +36,7 @@ const StatsPage = () => {
         { id: 'teams', name: 'Team Stats', icon: '🏀' },
     ];
 
-    const advancedPlayerStats = [
+    const advancedPlayerStats: { key: keyof Player["stats"]; label: string }[] = [
         { key: "pointsPerGame", label: "Points Per Game" },
         { key: "assistsPerGame", label: "Assists Per Game" },
         { key: "reboundsPerGame", label: "Rebounds Per Game" },
@@ -45,10 +46,10 @@ const StatsPage = () => {
         { key: "threePointPercentage", label: "3PT %" },
         { key: "freeThrowPercentage", label: "FT %" },
         { key: "efficiency", label: "Efficiency" },
-        { key: "minutesPerGame", label: "Minutes Per Game" }
+        { key: "minutesPerGame", label: "Minutes Per Game" },
     ];
 
-    const advancedTeamStats = [
+    const advancedTeamStats: { key: keyof Team["teamStats"]; label: string }[] = [
         { key: "pointsPerGame", label: "Points Per Game" },
         { key: "reboundsPerGame", label: "Rebounds Per Game" },
         { key: "assistsPerGame", label: "Assists Per Game" },
@@ -56,8 +57,9 @@ const StatsPage = () => {
         { key: "threePointPercentage", label: "3PT %" },
         { key: "freeThrowPercentage", label: "FT %" },
         { key: "defensiveRating", label: "Defensive Rating" },
-        { key: "offensiveRating", label: "Offensive Rating" }
+        { key: "offensiveRating", label: "Offensive Rating" },
     ];
+
 
     return (
         <>

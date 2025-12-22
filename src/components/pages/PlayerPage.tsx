@@ -30,6 +30,7 @@ const PlayerPage = () =>{
     }
 
     if (!player) return null
+    const teamObj = player.team as unknown as { _id: string; name: string; logo: string };
 
     const {name, stats,} = player;    //
     const shootingData = [
@@ -82,8 +83,8 @@ const PlayerPage = () =>{
                                         <span className="font-medium">Team:</span>
                                             <div className="flex items-center gap-2">
                                                 <TiltedCard
-                                                    imageSrc={player.team.logo}
-                                                    altText={`${player.team.name} Logo`}
+                                                    imageSrc={teamObj.logo}
+                                                    altText={`${teamObj.name} Logo`}
                                                     containerHeight="40px"
                                                     containerWidth="40px"
                                                     imageHeight="40px"
@@ -94,12 +95,14 @@ const PlayerPage = () =>{
                                                     showTooltip={false}
                                                     displayOverlayContent={true}
                                                 />
+
                                                 <Link
-                                                    to={`/teams/${player.team._id}`}
+                                                    to={`/teams/${teamObj._id}`}
                                                     className="text-blue-600 font-semibold hover:underline"
                                                 >
-                                                    {player.team.name}
+                                                    {teamObj.name}
                                                 </Link>
+
                                             </div>
                                     </div>
                                 </div>

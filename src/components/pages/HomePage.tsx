@@ -2,28 +2,31 @@ import {Link} from "react-router";
 import {useEffect, useState} from "react";
 import {getPlayers} from "@/services/api.players.ts";
 import {useAuth} from "@/hooks/useAuth.ts";
+import type {Player} from "@/schemas/players.ts";
 
 const HomePage = () => {
-    const [maxPPlayer, setMaxPPlayer] = useState(null);
-    const [maxAPlayer, setMaxAPlayer] = useState(null);
-    const [maxRPlayer, setMaxRPlayer] = useState(null);
-    const [maxEPlayer, setMaxEPlayer] = useState(null);
+    const [maxPPlayer, setMaxPPlayer] = useState<Player | null>(null);
+    const [maxAPlayer, setMaxAPlayer] = useState<Player | null>(null);
+    const [maxRPlayer, setMaxRPlayer] = useState<Player | null>(null);
+    const [maxEPlayer, setMaxEPlayer] = useState<Player | null>(null);
+
 
     const {isAuthenticated} = useAuth()
 
     useEffect(() => {
-        getPlayers().then((players)=> {
-            let maxPointPlayer = null;
-            let maxAssistPlayer = null;
-            let maxReboundPlayer = null;
-            let maxEfPlayer = null;
+        getPlayers().then((players) => {
+            const typedPlayers = players as Player[];
+            let maxPointPlayer: Player | null = null;
+            let maxAssistPlayer: Player | null = null;
+            let maxReboundPlayer: Player | null = null;
+            let maxEfPlayer: Player | null = null;
 
             let maxPoints = 0;
             let maxAssists = 0;
             let maxRebounds = 0;
             let maxEf = 0;
 
-            players.forEach((player) => {
+            typedPlayers.forEach((player) => {
                 if (player.stats.pointsPerGame > maxPoints) {
                     maxPoints = player.stats.pointsPerGame;
                     maxPointPlayer = player;
@@ -46,8 +49,9 @@ const HomePage = () => {
             setMaxAPlayer(maxAssistPlayer);
             setMaxRPlayer(maxReboundPlayer);
             setMaxEPlayer(maxEfPlayer);
-            });
-        },[]);
+        });
+    }, []);
+
 
 
     return (
