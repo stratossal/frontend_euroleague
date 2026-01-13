@@ -35,6 +35,11 @@ You can try the app without registering your own account. Use the demo credentia
 
 This account allows you to explore all features.
 
+⚠️ Important:
+To use the demo account, you must create a .env file in the root directory of the project with the following content:
+VITE_API_URL=https://euroleague-backend-typescript.onrender.com/api
+
+
 ---
 
 ## ⚡ Getting Started
