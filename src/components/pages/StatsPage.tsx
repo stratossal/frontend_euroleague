@@ -6,12 +6,13 @@ import type {Player} from "@/schemas/players.ts";
 import {Tab} from "@/components/tablist/Tab.tsx";
 import {TeamsCardGroup} from "@/components/cards/TeamsCardGroup.tsx";
 import {PlayersCardGroup} from "@/components/cards/PlayersCardGroup.tsx";
+import  type {Team} from "@/schemas/teams.ts"
 
 
 const StatsPage = () => {
     const [activeCategory, setActiveCategory] = useState('players');
     const [playerStats, setPlayerStats] = useState<Player[]>([]);
-    const [teamStats, setTeamStats] = useState([]);
+    const [teamStats, setTeamStats] = useState<Team[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

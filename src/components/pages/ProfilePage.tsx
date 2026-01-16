@@ -10,15 +10,16 @@ const ProfilePage = () => {
             </div>
         );
     }
-    const addr = (user as { address?: any })?.address || {};
+    const addr = (user as any).address || {};
     const address = [
-        addr.street,
-        addr.number,
-        addr.area,
-        addr.municipality,
-        addr.po,
+        user.street ?? addr.street,
+        user.number ?? addr.number,
+        user.area ?? addr.area,
+        user.municipality ?? addr.municipality,
+        user.po ?? addr.po,
         user.country
     ].filter(Boolean).join(", ") || "-";
+
 
 
     return (

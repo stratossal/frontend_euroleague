@@ -9,6 +9,8 @@ type TeamCardGroupProps = {
     teamStats: Team[];
 };
 
+
+
 export const TeamsCardGroup = ({ data, teamStats }: TeamCardGroupProps) => {
     return (
         <div className="space-y-12">

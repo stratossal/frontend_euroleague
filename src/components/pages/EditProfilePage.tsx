@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { updateUser } from "@/services/api.users.ts";
 import { toast } from "sonner";
 import {useNavigate} from "react-router";
+import {z} from "zod"
 
 export const editProfileSchema = userSchema
     .partial()
@@ -48,11 +49,11 @@ const EditProfilePage = () => {
             country: user.country,
             phone: user.phone,
             favTeam: user.favTeam,
-            area: user.address?.area || "",
-            street: user.address?.street || "",
-            number: user.address?.number || "",
-            po: user.address?.po || "",
-            municipality: user.address?.municipality || "",
+                area: user.area || "",
+                street: user.street || "",
+                number: user.number || "",
+                po: user.po || "",
+                municipality: user.municipality || "",
             password: "",
             confirmPassword: "",
         });
@@ -70,22 +71,27 @@ const EditProfilePage = () => {
                 country: data.country,
                 phone: data.phone,
                 favTeam: data.favTeam,
-                address: {
-                    area: data.area,
-                    street: data.street,
-                    number: data.number,
-                    po: data.po,
-                    municipality: data.municipality,
-                },
+                area: data.area,
+                street: data.street,
+                number: data.number,
+                po: data.po,
+                municipality: data.municipality,
                 ...(data.password ? { password: data.password } : {}),
             };
 
-            const updatedUser = await updateUser(user._id, payload, accessToken);
 
-            setUser(updatedUser);
-            localStorage.setItem("user", JSON.stringify(updatedUser));
+            await updateUser((user as User & { _id: string })._id, payload, accessToken);
+            const newUser = {
+                ...user,
+                ...payload
+            };
+
+            setUser(newUser);
+            localStorage.setItem("user", JSON.stringify(newUser));
+
             toast.success("Profile updated successfully");
-            navigate("/")
+            navigate("/");
+
         } catch (error) {
             toast.error(error instanceof Error ? error.message : "Update failed");
         }

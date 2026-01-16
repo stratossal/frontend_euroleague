@@ -8,7 +8,7 @@ type AuthContextProps = {
     loginUser: (fields: LoginFields) => Promise<void>
     logoutUser: () => void
     loading: boolean,
-    user: User,
+    user: User | null,
     setUser: (user: User) => void;
     }
 
