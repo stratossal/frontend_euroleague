@@ -125,3 +125,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Λίγο ξεzoom για Render production */
+#root {
+    transform: scale(0.97); /* 97% μεγέθους */
+    transform-origin: top left; /* κρατάει τη θέση */
+}
