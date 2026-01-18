@@ -5,6 +5,29 @@ Built with **Vite**, **Tailwind CSS**, and **React Hook Form**, it allows users 
 
 ---
 
+## 🌐 Live Demo
+
+You can access the app online here:  
+🔗 [Frontend Euroleague App](https://frontend-euroleague.onrender.com)
+
+---
+
+## 📸 Screenshots
+
+### Swagger API
+![Swagger Screenshot](screenshots/swagger.png)
+
+### Application Screenshots
+![First Page](screenshots/firstpage.png)
+![List of Players](screenshots/listPlayers.png)
+![Login Page](screenshots/login.png)
+![Map Page](screenshots/map.png)
+![Player Details](screenshots/player.png)
+![Stats Page](screenshots/stats.png)
+![Teams Page](screenshots/teams.png)
+
+---
+
 ## 📦 Features
 
 - User registration with **form validation** (powered by **Zod** + **React Hook Form**)
@@ -30,15 +53,16 @@ Built with **Vite**, **Tailwind CSS**, and **React Hook Form**, it allows users 
 
 You can try the app without registering your own account. Use the demo credentials:
 
-**Email:** ` stratos.salpas@example.com `  
+**Email:** `stratos.salpas@example.com`  
 **Password:** `mypassword123`
 
 This account allows you to explore all features.
 
-⚠️ Important:
-To use the demo account, you must create a .env file in the root directory of the project with the following content:
-VITE_API_URL=https://euroleague-backend-typescript.onrender.com/api
+⚠️ Important:  
+To use the demo account, you must create a `.env` file in the root directory of the project with the following content:
 
+```env
+VITE_API_URL=https://euroleague-backend-typescript.onrender.com/api
 
 ---
 
