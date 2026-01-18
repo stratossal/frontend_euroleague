@@ -8,23 +8,23 @@ Built with **Vite**, **Tailwind CSS**, and **React Hook Form**, it allows users 
 ## 🌐 Live Demo
 
 You can access the app online here:  
-🔗 [Frontend Euroleague App](https://frontend-euroleague.onrender.com)
+🔗 [https://frontend-euroleague.onrender.com](https://frontend-euroleague.onrender.com)
 
 ---
 
 ## 📸 Screenshots
 
 ### Swagger API
-![Swagger Screenshot](screenshots/swagger.png)
+![Swagger Screenshot](src/screenshots/swagger.png)
 
 ### Application Screenshots
-![First Page](screenshots/firstpage.png)
-![List of Players](screenshots/listPlayers.png)
-![Login Page](screenshots/login.png)
-![Map Page](screenshots/map.png)
-![Player Details](screenshots/player.png)
-![Stats Page](screenshots/stats.png)
-![Teams Page](screenshots/teams.png)
+![First Page](src/screenshots/firstpage.png)
+![List of Players](src/screenshots/listPlayers.png)
+![Login Page](src/screenshots/login.png)
+![Map Page](src/screenshots/map.png)
+![Player Details](src/screenshots/player.png)
+![Stats Page](src/screenshots/stats.png)
+![Teams Page](src/screenshots/teams.png)
 
 ---
 
