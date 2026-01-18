@@ -23,6 +23,7 @@ You can access the app online here:
 ![Login Page](src/screenshots/login.png)
 ![Map Page](src/screenshots/map.png)
 ![Player Details](src/screenshots/player.png)
+![Team Data](src/screenshots/team.png)
 ![Stats Page](src/screenshots/stats.png)
 ![Teams Page](src/screenshots/teams.png)
 
