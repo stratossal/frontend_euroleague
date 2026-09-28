@@ -1,24 +1,14 @@
 import {Link, useParams} from "react-router";
-import {useEffect, useState} from "react";
-import type {Player} from "@/schemas/players.ts";
-import {getPlayer} from "@/services/api.players.ts";
 import {OrbitProgress} from "react-loading-indicators";
 import PieChart from "@/components/charts/PieChart.tsx";
 import TiltedCard from "@/components/ui/TiltedCard.tsx";
+import { usePlayer } from "@/hooks/usePlayers";
 
 const PlayerPage = () =>{
     const {playerId} = useParams<{ playerId: string}>();
-    const [loading, setLoading] = useState(true);
-    const [player, setPlayer] = useState<Player | undefined>();
+    const {data: player, isPending,isError} = usePlayer(playerId)
 
-    useEffect(() => {
-        if (!playerId) return;
-        getPlayer(playerId)
-            .then(data => setPlayer(data))
-            .finally(() => setLoading(false));
-    }, [playerId]);
-
-    if (loading) {
+    if (isPending) {
         return (
             <div className="flex items-center justify-center h-screen">
                 <OrbitProgress
@@ -30,6 +20,13 @@ const PlayerPage = () =>{
     }
 
     if (!player) return null
+    if (isError) {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          Failed to load player
+        </div>
+      );
+    }
     const teamObj = player.team as unknown as { _id: string; name: string; logo: string };
 
     const {name, stats,} = player;    //

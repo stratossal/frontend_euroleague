@@ -13,37 +13,43 @@ import {AuthProvider} from "@/context/AuthProvider.tsx";
 import {Toaster} from "sonner";
 import ProfilePage from "@/components/pages/ProfilePage.tsx";
 import EditProfilePage from "@/components/pages/EditProfilePage.tsx";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 
 function App(){
 
+    const queryClient = new QueryClient()
+
     return (
       <>
-          <AuthProvider>
-          <BrowserRouter>
-              <Routes>
-                  <Route element={<Layout/>}>
-                  <Route index element={<HomePage/>}/>
-                      <Route path="register" element={<RegisterPage/>}/>
-                      <Route path="login" element={<LoginPage/>}/>
-                      <Route element={<ProtectedRoute/>}>
-                      <Route path="teams">
-                          <Route index element={<TeamsListPage/>}/>
-                          <Route path=":teamId" element={<TeamPage/>}/>
-                      </Route>
-                      <Route path="players">
-                          <Route index element={<PlayersListPage/>}/>
-                          <Route path=":playerId" element={<PlayerPage/>}/>
-                      </Route>
-                      <Route path="stats" element={<StatsPage/>}/>
-                      <Route path="profile" element={<ProfilePage/>} />
-                      <Route path="profile/edit" element={<EditProfilePage/>} />
-                      </Route>
-                  </Route>
-              </Routes>
-          </BrowserRouter>
-              <Toaster richColors/>
-          </AuthProvider>
+          <QueryClientProvider client={queryClient}>
+              <AuthProvider>
+                  <BrowserRouter>
+                      <Routes>
+                          <Route element={<Layout/>}>
+                              <Route index element={<HomePage/>}/>
+                              <Route path="register" element={<RegisterPage/>}/>
+                              <Route path="login" element={<LoginPage/>}/>
+                              <Route element={<ProtectedRoute/>}>
+                                  <Route path="teams">
+                                      <Route index element={<TeamsListPage/>}/>
+                                      <Route path=":teamId" element={<TeamPage/>}/>
+                                  </Route>
+                                  <Route path="players">
+                                      <Route index element={<PlayersListPage/>}/>
+                                      <Route path=":playerId" element={<PlayerPage/>}/>
+                                  </Route>
+                                  <Route path="stats" element={<StatsPage/>}/>
+                                  <Route path="profile" element={<ProfilePage/>} />
+                                  <Route path="profile/edit" element={<EditProfilePage/>} />
+                              </Route>
+                          </Route>
+                      </Routes>
+                  </BrowserRouter>
+                  <Toaster richColors/>
+              </AuthProvider>
+          </QueryClientProvider>
+
       </>
     )
 }

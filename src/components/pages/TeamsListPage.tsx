@@ -8,12 +8,12 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import {useEffect, useState} from "react";
-import {getTeams} from "@/services/api.teams.ts";
 import type {Team} from "@/schemas/teams.ts";
 import {OrbitProgress} from "react-loading-indicators";
 import type { FeatureCollection } from "geojson";
 import EuropeMap from "@/components/map/EuropeMap.tsx";
 import {useNavigate} from "react-router";
+import {useTeams} from "@/hooks/useTeams.ts";
 
 
 
@@ -38,22 +38,29 @@ const cityCoordinates: Record<string, [number, number]> = {
 };
 
 const TeamsListPage = () =>{
-    const [teams, setTeams] = useState<Team[]>([])
-    const [loading, setLoading] = useState<boolean>(true)
+    // const [teams, setTeams] = useState<Team[]>([])
+    // const [loading, setLoading] = useState<boolean>(true)
     const [europeGeoJson, setEuropeGeoJson] = useState<FeatureCollection | null>(null);
     const [mapLoading, setMapLoading] = useState<boolean>(true)
     const navigate = useNavigate()
+    
+    const {
+    data:teams = [],
+    isLoading,
+    isError,
+    error,
+    } = useTeams()
 
-    useEffect(()=>{
-        getTeams()
-            .then((data)=>{
-                const sorted = [...data].sort((a,b)=>
-                a.standings.position - b.standings.position)
-                setTeams(sorted)
-            })
-            .finally(()=>setLoading(false))
-
-    },[])
+    // useEffect(()=>{
+    //     getTeams()
+    //         .then((data)=>{
+    //             const sorted = [...data].sort((a,b)=>
+    //             a.standings.position - b.standings.position)
+    //             setTeams(sorted)
+    //         })
+    //         .finally(()=>setLoading(false))
+    //
+    // },[])
     useEffect(() => {
         setMapLoading(true);
         fetch("/maps/custom.geo.json")
@@ -65,7 +72,7 @@ const TeamsListPage = () =>{
             .catch(() => setMapLoading(false));
     }, []);
 
-    if (loading) {
+    if (isLoading) {
         return (
             <div className="flex items-center justify-center h-screen">
                 <OrbitProgress
@@ -74,6 +81,16 @@ const TeamsListPage = () =>{
                 />
             </div>
         )
+    }
+
+    if (isError) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <p className="text-red-500">
+                    {(error as Error).message || "Failed to load teams."}
+                </p>
+            </div>
+        );
     }
     return(
         <>
@@ -92,7 +109,7 @@ const TeamsListPage = () =>{
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {teams.map((team) => (
+                        {teams.map((team:Team) => (
                             <TableRow key={team.teamId}
                                       className="cursor-pointer hover:bg-gray-50 transition-colors duration-200"
                                       onClick={()=> navigate(`/teams/${team._id}`)}>

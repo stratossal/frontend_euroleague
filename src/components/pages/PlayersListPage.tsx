@@ -1,29 +1,55 @@
-import {useEffect, useState} from "react";
-import type {Player} from "@/schemas/players.ts";
-import {getPlayers} from "@/services/api.players.ts";
 import {OrbitProgress} from "react-loading-indicators";
 import {Pagination} from "@/components/ui/Pagination.tsx";
-import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import { usePlayers } from "@/hooks/usePlayers";
+import { usePlayersListFilters } from "@/hooks/usePlayersListFilters";
+import { useEffect, useState } from "react";
+
 
 const PlayersListPage = () =>{
-    const [players, setPlayers] = useState<Player[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
-    const displayedPlayers = selectedPlayer ? [selectedPlayer] : players;
+
+    const {search, position, page, setFilters} = usePlayersListFilters()
+    const {data: players,isPending,isError} = usePlayers({search,position,page})
+    const [searchInput, setSearchInput] = useState(search);
 
     useEffect(() => {
-        getPlayers()
-            .then(data => setPlayers(data))
-            .finally(() => setLoading(false))
-    }, []);
+      setSearchInput(search);
+    }, [search]);
 
-    if (loading) {
+   useEffect(() => {
+  const timeoutId = setTimeout(() => {
+    setFilters({
+      search: searchInput,
+      page: 1,
+    });
+  }, 900);
+
+  return () => clearTimeout(timeoutId);
+}, [searchInput, setFilters]);
+    
+
+    if (isPending) {
         return (
             <div className="flex items-center justify-center h-screen">
                 <OrbitProgress color="#4F46E5" size="large" />
             </div>
         )
+    }
+
+    if (isError) {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          There are no data
+        </div>
+      );
+    }
+
+    if (!players) {
+      return (
+        <div className="flex items-center justify-center h-screen">
+          No players found
+        </div>
+      );
     }
 
     return (
@@ -32,23 +58,16 @@ const PlayersListPage = () =>{
                 Players
             </h1>
             <div className="absolute top-24 right-8 w-64 z-50">
-                <Autocomplete
-                    options={Array.from(new Map(players.map(p => [p.name, p])).values())}
-                    getOptionLabel={(p) => p.name}
-                    value={selectedPlayer}
-                    onChange={(_e, newValue) => setSelectedPlayer(newValue)}
-                    renderInput={(params) => (
                         <TextField
-                            {...params}
                             label="Search players..."
                             size={"small"}
+                            value={searchInput}
                             variant="outlined"
+                            onChange={(e) => setSearchInput(e.target.value)}
                             className="w-full rounded-lg shadow-sm"
                         />
-                    )}
-                />
             </div>
-            <Pagination players={displayedPlayers}
+            <Pagination players={players}
                         itemsPerPage={20}
             />
         </div>
